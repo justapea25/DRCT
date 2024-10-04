@@ -10,9 +10,9 @@ datasets:
   train:
     name: DF2K
     type: PairedImageDataset
-    dataroot_gt: datasets/DF2K/DF2K_HR_sub
-    dataroot_lq: datasets/DF2K/DF2K_bicx4_sub
-    meta_info_file: drct/data/meta_info/meta_info_DF2Ksub_GT.txt
+    dataroot_gt: datasets/Urban100_SR/GTmod4
+    dataroot_lq: datasets/Urban100_SR/LRbicx4
+    # meta_info_file: drct/data/meta_info/meta_info_Urban100sub_GT.txt
     io_backend:
       type: disk
 
@@ -73,7 +73,7 @@ network_g:
 
 # path
 path:
-  pretrain_network_g: ./experiments/train_DRCT_SRx4_ImageNet_from_scratch/models/net_g_latest.pth
+  pretrain_network_g: ./experiments/pretrained_models/DRCT_SRx4_ImageNet-pretrain.pth
   param_key_g: 'params_ema'
   strict_load_g: true
   resume_state: ~

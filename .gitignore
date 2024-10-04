@@ -1,0 +1,6 @@
+.eggs/*
+drct.egg-info/*
+**/__pycache__/*.pyc
+datasets/*
+experiments/*
+results/*
