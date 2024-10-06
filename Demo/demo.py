@@ -42,6 +42,10 @@ def super_resolve(model, low_res_image):
         high_res_image = postprocess_image(output)
     return high_res_image
 
+import streamlit as st
+import cv2
+import numpy as np
+
 # Streamlit UI
 def main():
     st.title("Image Super-Resolution using DRCT Model")
@@ -61,16 +65,25 @@ def main():
             # Convert from BGR to RGB format
             low_res_image = cv2.cvtColor(low_res_image, cv2.COLOR_BGR2RGB)
 
-            # Display the low-resolution image
-            st.image(low_res_image, caption='Low Resolution Image', use_column_width=True)
+            # Create two columns
+            col1, col2 = st.columns(2)
+
+            # Display the low-resolution image in the first column
+            with col1:
+                st.image(low_res_image, caption='Low Resolution Image', width=300)
 
             # Load the model
             model = load_model("./experiments/pretrained_models/DRCT_SRx4_ImageNet-pretrain.pth")
 
             # Process the image
             if st.button("Super-Resolve"):
+                # Super-resolve the image
                 high_res_image = super_resolve(model, low_res_image)
-                st.image(high_res_image, caption='High Resolution Image', use_column_width=True)
+
+                # Display the high-resolution image in the second column
+                with col2:
+                    st.image(high_res_image, caption='High Resolution Image', width=300)
 
 if __name__ == '__main__':
     main()
+
